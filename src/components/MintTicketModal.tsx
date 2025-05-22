@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 
-interface BuyTicketModalProps {
+interface MintTicketModalProps {
   poolName: string;
   ticketPrice: number;
   maxTickets: number;
   onClose: () => void;
-  onBuy: (quantity: number) => void;
+  onMint: (quantity: number) => void;
 }
 
-const BuyTicketModal: React.FC<BuyTicketModalProps> = ({ 
+const MintTicketModal: React.FC<MintTicketModalProps> = ({ 
   poolName, 
   ticketPrice, 
   maxTickets, 
   onClose, 
-  onBuy 
+  onMint 
 }) => {
   const [quantity, setQuantity] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -25,11 +25,11 @@ const BuyTicketModal: React.FC<BuyTicketModalProps> = ({
     }
   };
   
-  const handleBuy = () => {
+  const handleMint = () => {
     setIsProcessing(true);
     // Simulate transaction processing
     setTimeout(() => {
-      onBuy(quantity);
+      onMint(quantity);
       setIsProcessing(false);
     }, 1500);
   };
@@ -38,7 +38,7 @@ const BuyTicketModal: React.FC<BuyTicketModalProps> = ({
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 w-full max-w-md">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold text-gray-800">Buy Tickets</h2>
+          <h2 className="text-xl font-bold text-gray-800">Mint Tickets</h2>
           <button 
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700"
@@ -83,7 +83,7 @@ const BuyTicketModal: React.FC<BuyTicketModalProps> = ({
             Cancel
           </button>
           <button
-            onClick={handleBuy}
+            onClick={handleMint}
             disabled={isProcessing}
             className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 rounded-md transition duration-300 disabled:opacity-70"
           >
@@ -95,4 +95,4 @@ const BuyTicketModal: React.FC<BuyTicketModalProps> = ({
   );
 };
 
-export default BuyTicketModal;
+export default MintTicketModal;

@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 interface PoolCardProps {
   id: string;
   name: string;
-  prize: string;
   endTime: string;
   image?: string;
+  requiredAmount?: string;
+  participant?: string;
 }
 
-const PoolCard: React.FC<PoolCardProps> = ({ id, name, prize, endTime, image }) => {
+const PoolCard: React.FC<PoolCardProps> = ({ id, name, endTime, image, participant = "0/20", requiredAmount }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-xl hover:-translate-y-1">
       <div className="h-40 bg-gray-200 relative">
@@ -27,12 +28,12 @@ const PoolCard: React.FC<PoolCardProps> = ({ id, name, prize, endTime, image }) 
       </div>
       
       <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-800 mb-2 truncate">{name}</h3>
+        <h3 className="text-lg font-semibold text-gray-800 mb-2 truncate">Prize pool {name}</h3>
         
         <div className="space-y-2 mb-4">
           <div className="flex justify-between">
-            <span className="text-gray-600">Prize:</span>
-            <span className="font-medium text-green-600">{prize}</span>
+            <span className="text-gray-600">Participants:</span>
+            <span className="font-medium text-blue-600">{participant}</span>
           </div>
           
           <div className="flex justify-between">

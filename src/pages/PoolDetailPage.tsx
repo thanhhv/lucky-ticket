@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import BuyTicketModal from '../components/BuyTicketModal';
+import MintTicketModal from '../components/MintTicketModal';
 
 // Mock data for a pool
 const getMockPoolData = (id: string) => ({
@@ -17,14 +17,14 @@ const getMockPoolData = (id: string) => ({
   totalPrize: '$10,000',
   serviceFee: '$500',
   description: 'This is an exciting lottery pool with amazing prizes. Join now for a chance to win big rewards!',
-  rules: 'Buy tickets to participate. Each ticket costs $1. Winners will be selected randomly after the pool ends.',
+  rules: 'Mint tickets to participate. Each ticket costs $1. Winners will be selected randomly after the pool ends.',
 });
 
 const PoolDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const [pool, setPool] = useState<any>(null);
   const [timeLeft, setTimeLeft] = useState<any>({});
-  const [showBuyModal, setShowBuyModal] = useState(false);
+  const [showMintModal, setShowBuyModal] = useState(false);
   
   useEffect(() => {
     // In a real app, fetch pool data from API
@@ -173,20 +173,20 @@ const PoolDetailPage = () => {
                 onClick={() => setShowBuyModal(true)}
                 className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold shadow-md transition duration-300"
               >
-                Buy Tickets
+                Mint Tickets
               </button>
             </div>
           </div>
         </div>
       </div>
       
-      {showBuyModal && (
-        <BuyTicketModal 
+      {showMintModal && (
+        <MintTicketModal 
           poolName={pool.name}
           ticketPrice={1}
           maxTickets={pool.totalTickets - pool.soldTickets}
           onClose={() => setShowBuyModal(false)}
-          onBuy={(quantity) => {
+          onMint={(quantity) => {
             // Handle buy logic here
             console.log(`Bought ${quantity} tickets`);
             setShowBuyModal(false);
